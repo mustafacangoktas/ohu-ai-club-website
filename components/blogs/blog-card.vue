@@ -31,7 +31,7 @@ const props = defineProps<{
           <span>{{ Util.formatDate(props.date) }}</span>
         </p>
         <p class="text-gray-500 mb-2">{{
-            Util.cleanMarkdown(props.description).substring(0, 100) + "..."
+            Util.cleanMarkdown(props.description).substring(0, 350) + "..."
           }}</p>
       </div>
     </div>

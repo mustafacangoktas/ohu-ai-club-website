@@ -8,7 +8,7 @@
       tıklayarak bize ulaşabilirsiniz.
     </p>
   </div>
-  <div class="mt-10 grid grid-cols-3 md:grid-cols-1 lg:grid-cols-2 gap-8">
+  <div class="mt-10 grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-8">
     <BlogCard v-for="blog in blogs" :key="blog.title" v-bind="blog"/>
   </div>
 </template>
