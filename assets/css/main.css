@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Hem body hem de html tam ekran yüksekliğe sahip olacak */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    background: url("/background.webp") no-repeat center center;
+    background-size: contain; /* Görselin tüm alanı düzgün sığması için */
+    background-color: black; /* Görsel yüklenene kadar siyah bir arka plan oluşturuyoruz */
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 30, 0.9);
+    z-index: -2;
+}
+
+.glow1 {
+    width: 100%; /* Oval bir görünüm için genişlik daha fazla */
+    height: 50vh; /* Yüksekliği daha az tutarak oval görünüm sağlıyoruz */
+    content: " ";
+    position: fixed;
+    z-index: -1;
+    background: radial-gradient(ellipse at 0% 0%, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
+    mask: radial-gradient(ellipse at 0% 0%, black 0%, transparent 70%);
+    left: 0; /* Sol üste taşındı */
+    top: 0;
+}
+
+.glow2 {
+    width: 60%; /* Daha küçük alan kaplayacak */
+    height: 30vh; /* Orantılı olarak küçültüldü */
+    content: " ";
+    position: fixed;
+    z-index: -1;
+    background: radial-gradient(ellipse at 0% 100%, rgba(255, 0, 255, 0.2) 0%, transparent 60%);
+    mask: radial-gradient(ellipse at 0% 100%, black 0%, transparent 60%);
+    left: 0; /* Sol altta hafif içeride yerleştirildi */
+    bottom: 0; /* Sol alt köşeye taşındı */
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 2rem;
+    padding-left: 2rem;
+
+    @media screen and (min-width: 1200px) {
+        max-width: 1200px;
+    }
+
+    @media screen and (max-width: 992px) {
+        max-width: 992px;
+    }
+
+    @media screen and (max-width: 768px) {
+        max-width: 768px;
+    }
+
+    @media screen and (max-width: 576px) {
+        max-width: 576px;
+    }
+}
+
+.top-line {
+    position: relative;
+    width: 100%;
+}
+
+.link {
+    color: #a99bff;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+        color: #c0b5ff;
+    }
+}
+
+.top-line::before {
+    background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0) -0.85%,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.08) 75%,
+    rgba(255, 255, 255, 0) 100%);
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+}
+
+.shaded-box::after {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(8, 0, 255, 0.08) 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: 0.35s cubic-bezier(0.6, 0.6, 0, 1) opacity;
+    width: 100%;
+}
