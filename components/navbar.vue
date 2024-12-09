@@ -93,7 +93,8 @@ const navigators = ref([
 
 const socials = ref([
   {icon: "instagram", link: "https://instagram.com/ohuyapayzeka"},
-  {icon: "linkedin", link: "https://linkedin.com/company/ohuyapayzeka"},
+  {icon: "linkedin", link: "https://www.linkedin.com/in/ohuyapayzeka/"},
+  {icon: "x-twitter", link: "https://x.com/ohuyapayzeka"},
 ]);
 
 onMounted(() => {

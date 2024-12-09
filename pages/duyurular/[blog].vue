@@ -2,10 +2,10 @@
   <div class="mx-auto">
     <div class="blog flex flex-col items-center justify-center">
       <div class="blog__header flex flex-col items-center justify-center mb-8 w-full">
-        <div v-if="blog?.image" class="blog__header-image w-full">
-          <NuxtImg :src="blog.image" alt="thumbnail" width="750" height="424" class="w-full rounded-lg !mt-0 object-contain"/>
+        <div v-if="blog?.image" class="blog__header-image w-full" data-aos="fade-up">
+          <NuxtImg :src="blog.image" alt="thumbnail" width="3000" height="1696" class="w-full rounded-lg !mt-0 object-contain"/>
         </div>
-        <div class="blog__header-title mt-5 text-center">
+        <div class="blog__header-title mt-5 text-center" data-aos="fade-up">
           <h1 class="text-3xl font-bold">{{ blog?.title }}</h1>
           <div class="attributes flex items-center justify-center text-gray-400 font-semibold gap-2 mt-2">
             <span :style="`color:${Util.getBlogCategory(blog?.category).color}`">{{ Util.getBlogCategory(blog?.category).category }}</span>
@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <div class="blog__description w-4/5 md:w-full text-gray-700 leading-relaxed">
+      <div class="blog__description w-4/5 md:w-full text-gray-700 leading-relaxed" data-aos="fade-up">
         <div v-html="blog?.description"></div>
       </div>
     </div>
@@ -105,6 +105,7 @@ var {data: blog, error: blogError} = await useAsyncData("blogData", () => {
     margin-bottom: 1rem;
     max-width: 100%;
     border-radius: 0.5rem; /* Görsel estetik için */
+    max-height: 644px; /* Görsel boyutu için */
   }
 
   ul {

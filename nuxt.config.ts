@@ -37,7 +37,7 @@ export default defineNuxtConfig({
             title: 'NOHU AI Kulübü | Yapay Zeka ile Geleceği Şekillendir',
             script: [
                 {
-                    src: 'https://kit.fontawesome.com/49605dff01.js',
+                    src: 'https://kit.fontawesome.com/a2c0ddffa6.js',
                     async: true,
                     crossorigin: 'anonymous',
                 },

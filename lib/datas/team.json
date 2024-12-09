@@ -13,7 +13,7 @@
   },
   {
     "name": "Mustafa Can Göktaş",
-    "title": "Yazman, Sitenin Geliştiricisi",
+    "title": "Sitenin Geliştiricisi ve Sosyal Medya Sorumlusu",
     "image": "/profile.png",
     "description": "Mustafa Can Göktaş, Niğde Ömar Mühendisliği 1. sınıf öğrencisidir. Yapay Zeka alanında kendini geliştirmektedir.",
     "socials": [
@@ -29,17 +29,13 @@
   },
   {
     "name": "Veysi Demir",
-    "title": "Başkan Yardımcısı",
+    "title": "Genel Sekreter",
     "description": "Veysi Demir, Niğde Ömer Halisdemir Üniversitesi Bilgisayar Mühendisliği öğrencisidir. Yapay Zeka alanında kendini geliştirmektedir.",
     "image": "/profile.png",
     "socials": [
       {
         "icon": "instagram",
-        "link": "https://instagram.com/veysi"
-      },
-      {
-        "icon": "linkedin",
-        "link": "https://linkedin.com/in/veysi"
+        "link": "https://instagram.com/veysidmrr"
       }
     ]
   }
