@@ -62,9 +62,9 @@
             <NuxtLink
                 :href="social.link"
                 target="_blank"
-                class="flex items-center justify-center text-white bg-violet-500/30 transition duration-500 ease-in-out w-10 h-10 hover:bg-white hover:text-black rounded-lg"
+                class="flex items-center justify-center text-white bg-violet-500/30 transition duration-500 ease-in-out w-10 h-10 md:w-11 md:h-11 hover:bg-white hover:text-black rounded-lg"
             >
-              <i :class="`fa-brands fa-${social.icon} text-2xl`"></i>
+              <i :class="`fa-brands fa-${social.icon} text-2xl md:text-3xl`"></i>
             </NuxtLink>
           </li>
         </ul>
