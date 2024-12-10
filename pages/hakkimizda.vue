@@ -12,8 +12,8 @@
     <TeamCard v-for="member in team" :key="member.name" v-bind="member"/>
   </div>
   <div class="flex flex-col items-center mt-8" data-aos="fade-up">
-    <h3 class="text-lg text-gray-300 max-w-2xl text-pretty text-center">
-      YAKINDA TÜM EKİBİMİZİN TANITIMI YAYINDA OLACAK!
+    <h3 class="text-base text-gray-300 max-w-2xl text-pretty text-center">
+      YAKINDA TÜM EKİBİMİZ YAYINDA OLACAK!
     </h3>
   </div>
 </template>
