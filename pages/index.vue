@@ -7,11 +7,14 @@ import LeftArrow from "~/components/common/left-arrow.vue";
 <template>
   <div class="flex justify-center items-center h-[100vh] absolute top-0 left-0 w-full">
     <div class="text-center">
+      
       <div data-aos="fade-down">
-        <h2 class="text-2xl font-bold mb-1 text-gray-300">
-          <NuxtImg src="/ohu_logo.png" alt="logo" width="447" height="415"/>
-          Niğde Ömer Halisdemir Üniversitesi
-        </h2>
+        <div class="flex items-center justify-center mb-1">
+          <NuxtImg src="/ohu_logo.png" alt="logo" width="50"/>
+          <h2 class="text-2xl font-bold text-gray-300">
+            Niğde Ömer Halisdemir Üniversitesi
+          </h2>
+        </div>
         <h1 class="text-6xl font-bold">Yapay Zeka Kulübü</h1>
       </div>
 
@@ -29,14 +32,14 @@ import LeftArrow from "~/components/common/left-arrow.vue";
               title="Topluluğa Katıl"
               href="https://instagram.com/ohuyapayzeka"
               target="_blank"
-              className="gradient-bg-1"
+              class="gradient-bg-1"
               color="white"
               data-aos="zoom-in"
           />
           <Button
               title="Hakkımızda"
               href="/hakkimizda"
-              className="bg-gradient-to-r from-gray-500 to-gray-700"
+              class="bg-gradient-to-r from-gray-500 to-gray-700"
               color="white"
               data-aos="zoom-in"
           />

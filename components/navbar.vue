@@ -5,32 +5,26 @@
     <div class="background"/>
     <nav
         id="navbar"
-        class="flex flex-row-reverse md:flex-row justify-between items-center py-5 fixed z-30 container">
+        class="flex flex-row-reverse md:flex-row justify-between items-center py-5 fixed z-30 container"
+    >
       <div>
-        <button
-            class="hidden lg:block navbar-toggle-button"
-            :class="{ active: menuOpen }"
+        <ToggleButton
+            class="hidden lg:block"
+            :active="menuOpen"
             @click="menuOpen = !menuOpen"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        />
+
         <div
             :class="[
             'flex items-center space-x-4 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:z-50 lg:bg-black/90 lg:rounded-lg lg:py-8 lg:px-8 lg:top-0 lg:w-full lg:h-screen lg:flex-col lg:justify-start lg:items-center lg:space-y-4 lg:gap-4 navbar-mobile-menu',
             menuOpen ? 'active' : ''
           ]"
         >
-          <button
-              class="hidden lg:block navbar-toggle-button"
-              :class="{ active: menuOpen }"
+          <ToggleButton
+              class="hidden lg:block"
+              :active="menuOpen"
               @click="menuOpen = !menuOpen"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          />
           <ul
               class="flex space-x-6 font-semibold items-center lg:w-full lg:!m-0 lg:flex-col lg:space-y-4 lg:space-x-0 lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2"
           >
@@ -62,6 +56,9 @@
             <NuxtLink
                 :href="social.link"
                 target="_blank"
+                rel="noopener"
+                :aria-label="`${social.icon} hesabımız`"
+                :title="social.icon"
                 class="flex items-center justify-center text-white bg-violet-500/30 transition duration-500 ease-in-out w-10 h-10 md:w-11 md:h-11 hover:bg-white hover:text-black rounded-lg"
             >
               <i :class="`fa-brands fa-${social.icon} text-2xl md:text-3xl`"></i>
@@ -74,15 +71,19 @@
 </template>
 
 <script setup>
-import {ref, computed, onMounted} from "vue";
+import {ref, onMounted, onBeforeUnmount} from "vue";
 import {useRouter} from "vue-router";
+import ToggleButton from "./common/toggle-button.vue";
 
 const menuOpen = ref(false);
 const router = useRouter();
 
 function isActive(url) {
   const path = router.currentRoute.value.path;
-  return path === url ? "active" : "";
+  if (url === "/") {
+    return path === url ? "active" : "";
+  }
+  return path.startsWith(url) ? "active" : "";
 }
 
 const navigators = ref([
@@ -97,17 +98,6 @@ const socials = ref([
   {icon: "x-twitter", link: "https://x.com/ohuyapayzeka"},
 ]);
 
-onMounted(() => {
-  window.addEventListener("scroll", () => {
-    const navbar = document.getElementById("navbar");
-    if (window.scrollY > 0) {
-      navbar.classList.add("backdrop-blur");
-    } else {
-      navbar.classList.remove("backdrop-blur");
-    }
-  });
-});
-
 function addHoverClass(event) {
   const link = event.currentTarget.querySelector(".gradient-underline");
   if (link) link.classList.add("active");
@@ -118,11 +108,25 @@ function removeHoverClass(event, path) {
   if (isActive(path)) return;
   if (link) link.classList.remove("active");
 }
+
+onMounted(() => {
+  const handleScroll = () => {
+    const navbar = document.getElementById("navbar");
+    if (window.scrollY > 0) {
+      navbar.classList.add("backdrop-blur");
+    } else {
+      navbar.classList.remove("backdrop-blur");
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  onBeforeUnmount(() => {
+    window.removeEventListener("scroll", handleScroll);
+  });
+});
 </script>
 
-
-<style scoped>
-
+<style scoped lang="scss">
 .gradient-underline::after {
   content: "";
   position: absolute;
@@ -131,58 +135,20 @@ function removeHoverClass(event, path) {
   bottom: -4px;
   border-radius: 20px;
   height: 1px;
-  background: linear-gradient(to right, rgba(242, 240, 245, 0.1), rgba(242, 240, 245, 0.6), rgba(242, 240, 245, 0.1)); /* Siyah-gri geçiş */
+  background: linear-gradient(
+          to right,
+          rgba(242, 240, 245, 0.1),
+          rgba(242, 240, 245, 0.6),
+          rgba(242, 240, 245, 0.1)
+  );
   opacity: 0;
-  width: 100%; /* width düzeltildi */
+  width: 100%;
   transform-origin: left;
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Fade ve genişleme efekti */
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .gradient-underline.active::after {
-  opacity: 1; /* Görünür yap */
-}
-
-.navbar-toggle-button.active span {
-  background-color: #fff;
-}
-
-.navbar-toggle-button {
-  background-color: transparent;
-  border: none;
-
-  @media screen and (max-width: 1024px) {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    z-index: 1000;
-    margin-left: auto;
-    cursor: pointer;
-  }
-
-  span {
-    display: block;
-    width: 2.4rem;
-    height: 0.25rem;
-    background: white;
-    transition-duration: 200ms;
-    border-radius: 0.25rem;
-  }
-}
-
-.navbar-toggle-button.active {
-  span:nth-child(1) {
-    transform: rotate(45deg) translate(0.75rem, 0.25rem);
-    transition-duration: 200ms;
-  }
-
-  span:nth-child(2) {
-    opacity: 0;
-  }
-
-  span:nth-child(3) {
-    transform: rotate(-45deg) translate(0.75rem, -0.25rem);
-    transition-duration: 200ms;
-  }
+  opacity: 1;
 }
 
 .navbar-mobile-menu.active {
@@ -199,5 +165,3 @@ function removeHoverClass(event, path) {
   }
 }
 </style>
-
-

@@ -5,14 +5,13 @@ const props = defineProps<{
   title: string;
   color?: string;
   icon?: string;
-  className?: string;
   href?: string;
   target?: string;
   onClick?: () => void;
 }>();
 
 const className = `px-6 py-3 rounded-md font-medium focus:outline-none transition !duration-300 !ease-in-out`
-    + ` ${props.icon ? 'flex items-center' : ''} ${props.className ? props.className : ''}`
+    + ` ${props.icon ? 'flex items-center' : ''} `
     + ` hover:!opacity-[0.85]`;
 </script>
 
