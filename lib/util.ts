@@ -8,6 +8,27 @@ export default class Util {
         )}, ${new Date(date).getFullYear()}`
     }
 
+    public static extractTextFromBody(bodyArray: any[]) {
+        let text = ''
+
+        for (const item of bodyArray) {
+            if (Array.isArray(item)) {
+                // Yapı: [tag, props, content or children]
+                const content = item[2]
+
+                if (typeof content === 'string') {
+                    text += content + ' '
+                } else if (Array.isArray(content)) {
+                    // iç içe çocuklar varsa onları da gez
+                    text += Util.extractTextFromBody(content)
+                }
+            }
+        }
+
+        return text.trim()
+    }
+
+
     public static cleanMarkdown(text: string) {
         if (!text) return '';
         // Başlıkları kaldır (örn. ## Başlık)

@@ -1,3 +1,15 @@
+<script setup>
+
+import BlogCard from "~/components/blogs/blog-card.vue";
+import Util from "~/lib/util";
+
+const {data: blogs} = await useAsyncData('blog-list', () =>
+    queryCollection('blog').order('date', 'DESC').all()
+)
+
+console.log(blogs.value[0])
+</script>
+
 <template>
   <h1 class="text-4xl font-bold text-center" data-aos="fade-down"
   >Duyurular</h1>
@@ -9,20 +21,8 @@
     </p>
   </div>
   <div class="mt-10 grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-8">
-    <BlogCard v-for="blog in blogs" :key="blog.title" v-bind="blog"/>
+    <BlogCard v-for="blog in blogs" :key="blog.path" :title="blog.title"
+              :description="Util.extractTextFromBody(blog.body.value)"
+              :image="blog.image" :link="blog.path" :date="blog.date" :category="blog.category"/>
   </div>
 </template>
-
-<script setup lang="ts">
-import BlogCard from "~/components/blogs/blog-card.vue";
-import Blogs from "~/lib/datas/blogs.json";
-
-const blogs: {
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-  date: Date;
-  category: 'blog' | 'announcement' | 'event' | 'oppurtunity';
-}[] = Blogs as any;
-</script>

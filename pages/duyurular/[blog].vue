@@ -1,56 +1,47 @@
+<script setup>
+import Util from "~/lib/util";
+
+const route = useRoute()
+const error = useError()
+
+const {data: blog} = await useAsyncData(`blog-${route.params.blog}`, async () => {
+  const content = await queryCollection('blog', route.params.blog).first()
+  if (!content) {
+    error.value = {
+      statusCode: 404,
+      message: 'Bu haber bulunamadı.'
+    }
+  }
+  return content
+})
+</script>
+
 <template>
   <div class="mx-auto">
     <div class="blog flex flex-col items-center justify-center">
       <div class="blog__header flex flex-col items-center justify-center mb-8 w-full">
         <div v-if="blog?.image" class="blog__header-image w-full" data-aos="fade-up">
-          <NuxtImg :src="blog.image" alt="thumbnail" width="3000" height="1696" class="w-full rounded-lg !mt-0 object-contain"/>
+          <NuxtImg :src="blog.image" alt="thumbnail" width="3000" height="1696"
+                   class="w-full rounded-lg !mt-0 object-contain"/>
         </div>
         <div class="blog__header-title mt-5 text-center" data-aos="fade-up">
           <h1 class="text-3xl font-bold">{{ blog?.title }}</h1>
           <div class="attributes flex items-center justify-center text-gray-400 font-semibold gap-2 mt-2">
-            <span :style="`color:${Util.getBlogCategory(blog?.category).color}`">{{ Util.getBlogCategory(blog?.category).category }}</span>
+            <span :style="`color:${Util.getBlogCategory(blog?.category).color}`">{{
+                Util.getBlogCategory(blog?.category).category
+              }}</span>
             <span>–</span>
             <span>{{ Util.formatDate(blog?.date) }}</span>
           </div>
         </div>
       </div>
       <div class="blog__description w-4/5 md:w-full text-gray-700 leading-relaxed" data-aos="fade-up">
-        <div v-html="blog?.description"></div>
+        <ContentRenderer :value="blog" class="prose prose-invert max-w-none mt-10"/>
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import Blogs from "~/lib/datas/blogs.json";
-import Util from "~/lib/util";
-import {useRoute, useError} from "#app";
-import markdownit from 'markdown-it'
-
-const route = useRoute();
-const error = useError();
-
-// Server-side kontrol için useAsyncData
-var {data: blog, error: blogError} = await useAsyncData("blogData", () => {
-  const id = route.params.blog;
-  const blog = Blogs.find((b) => b.link === `/duyurular/${id}`);
-
-  if (!blog) {
-    // Blog bulunamadığında server-side'da hata oluştur.
-    error.value = {
-      statusCode: 404,
-      message: "Bu haber bulunamadı.",
-    };
-    return null;
-  }
-
-  return {
-    ...blog,
-    description: markdownit().render(blog.description),
-  };
-});
-
-</script>
 
 <style>
 .blog {
@@ -128,7 +119,7 @@ var {data: blog, error: blogError} = await useAsyncData("blogData", () => {
     margin-top: 0.5rem;
   }
 
-  a {
+  a[rel="nofollow"] {
     color: #a99bff;
     text-decoration: none;
     transition: color 0.2s;
@@ -169,3 +160,4 @@ var {data: blog, error: blogError} = await useAsyncData("blogData", () => {
   }
 }
 </style>
+

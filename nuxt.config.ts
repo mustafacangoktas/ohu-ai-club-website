@@ -80,5 +80,5 @@ export default defineNuxtConfig({
         }
     },
 
-    modules: ['@nuxt/image', 'nuxt-aos']
+    modules: ['@nuxt/image', 'nuxt-aos', '@nuxt/content'],
 })
