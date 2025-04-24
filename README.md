@@ -1,75 +1,25 @@
-# Nuxt Minimal Starter
+<div align="center">
+  <img src="https://raw.githubusercontent.com/mustafacangoktas/ohu-ai-club-website/main/public/logo.png" height="100" alt="OHÜ Yapay Zeka Kulübü Logo" />
+  <h1>Niğde Ömer Halisdemir Üniversitesi Yapay Zeka Kulübü</h1>
+  <p>Resmi Kulüp Web Sitesi - <a href="https://ohuyapayzeka.com">ohuyapayzeka.com</a></p>
+</div>
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![Ekran Görüntüsü](https://raw.githubusercontent.com/mustafacangoktas/ohu-ai-club-website/main/public/screenshot.png)
 
-## Setup
+## 📌 Proje Hakkında
 
-Make sure to install dependencies:
+Bu proje, Niğde Ömer Halisdemir Üniversitesi öğrencileri tarafından kurulan Yapay Zeka Kulübü'nün resmi web sitesidir.
+Kulübümüz, öğrencilerin yapay zeka ve makine öğrenmesi alanlarında bilgi sahibi olmalarını sağlamak amacıyla
+kurulmuştur.
 
-```bash
-# npm
-npm install
+## 🚀 Özellikler
 
-# pnpm
-pnpm install
+- Duyurular bölümü (Nuxt Content ile markdown destekli)
+- Takım üyeleri sayfası
+- Şık ve modern tasarım (Tailwind CSS)
+- Mobil uyumlu yapı
+- SEO dostu yapılandırma
 
-# yarn
-yarn install
+## 📁 Proje Yapısı
 
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Proje Nuxt.js 3 ile geliştirilmiştir. Markdown tabanlı içerik yönetimi için `@nuxt/content` modülü kullanılmaktadır.
